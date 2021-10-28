@@ -32,4 +32,10 @@ public interface ApiEndPoint {
             @Path("movie_id") int movieId,
             @Query("api_key") String apiKey
     );
+
+    @GET("movie/{movie_id}/recommendations")
+    Call<Movie.Recommendations> getRecommendations(
+            @Path("movie_id") int movieId,
+            @Query("api_key") String apiKey
+    );
 }

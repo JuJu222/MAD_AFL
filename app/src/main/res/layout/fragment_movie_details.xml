@@ -31,6 +31,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movieDetailsRecommendationsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailsTextView7" />
+
             <TextView
                 android:id="@+id/movieDetailsTextView6"
                 android:layout_width="wrap_content"
@@ -44,17 +54,32 @@
                 app:layout_constraintStart_toStartOf="@+id/movieDetailsTextView"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailsCastsRecyclerView" />
 
+            <TextView
+                android:id="@+id/movieDetailsTextView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Recommendations"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/movieDetailsTextView"
+                app:layout_constraintTop_toBottomOf="@+id/movieDetailsCrewRecyclerView" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movieDetailsCrewRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movieDetailsTextView6" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movieDetailsCastsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

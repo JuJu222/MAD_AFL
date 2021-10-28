@@ -22,13 +22,17 @@ import com.example.moviedbafl.R;
 import com.example.moviedbafl.adapters.CastsAdapter;
 import com.example.moviedbafl.adapters.CrewAdapter;
 import com.example.moviedbafl.adapters.ProductionCompaniesAdapter;
+import com.example.moviedbafl.adapters.RecommendationsAdapter;
 import com.example.moviedbafl.helpers.Const;
 import com.example.moviedbafl.models.Movie;
 import com.example.moviedbafl.viewmodels.MovieViewModel;
 
+import java.util.List;
+
 public class MovieDetailsFragment extends Fragment {
     boolean isDetailsLoaded = false;
     boolean isCreditsLoaded = false;
+    boolean isRecommendationsLoaded = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class MovieDetailsFragment extends Fragment {
         TextView movieDetailsTextView3 = view.findViewById(R.id.movieDetailsTextView3);
         TextView movieDetailsTextView5 = view.findViewById(R.id.movieDetailsTextView5);
         TextView movieDetailsTextView6 = view.findViewById(R.id.movieDetailsTextView6);
+        TextView movieDetailsTextView7 = view.findViewById(R.id.movieDetailsTextView7);
         TextView movieDetailsTitleTextView = view.findViewById(R.id.movieDetailsTitleTextView);
         TextView movieDetailsTaglineTextView = view.findViewById(R.id.movieDetailsTaglineTextView);
         TextView movieDetailsReleaseDateTextView = view.findViewById(R.id.movieDetailsReleaseDateTextView);
@@ -56,6 +61,7 @@ public class MovieDetailsFragment extends Fragment {
         RecyclerView movieDetailsProductionCompaniesRecyclerView = view.findViewById(R.id.movieDetailsProductionCompaniesRecyclerView);
         RecyclerView movieDetailsCastsRecyclerView = view.findViewById(R.id.movieDetailsCastsRecyclerView);
         RecyclerView movieDetailsCrewRecyclerView = view.findViewById(R.id.movieDetailsCrewRecyclerView);
+        RecyclerView movieDetailsRecommendationsRecyclerView = view.findViewById(R.id.movieDetailsRecommendationsRecyclerView);
         ProgressBar movieDetailsProgressBar = view.findViewById(R.id.movieDetailsProgressBar);
 
         movieDetailsImageView.setVisibility(View.GONE);
@@ -66,6 +72,7 @@ public class MovieDetailsFragment extends Fragment {
         movieDetailsTextView3.setVisibility(View.GONE);
         movieDetailsTextView5.setVisibility(View.GONE);
         movieDetailsTextView6.setVisibility(View.GONE);
+        movieDetailsTextView7.setVisibility(View.GONE);
         movieDetailsTitleTextView.setVisibility(View.GONE);
         movieDetailsTaglineTextView.setVisibility(View.GONE);
         movieDetailsReleaseDateTextView.setVisibility(View.GONE);
@@ -76,6 +83,7 @@ public class MovieDetailsFragment extends Fragment {
         movieDetailsProductionCompaniesRecyclerView.setVisibility(View.GONE);
         movieDetailsCastsRecyclerView.setVisibility(View.GONE);;
         movieDetailsCrewRecyclerView.setVisibility(View.GONE);
+        movieDetailsRecommendationsRecyclerView.setVisibility(View.GONE);
         movieDetailsProgressBar.setVisibility(View.VISIBLE);
 
         movieViewModel.getDetails(movieId);
@@ -106,7 +114,7 @@ public class MovieDetailsFragment extends Fragment {
 
                 isDetailsLoaded = true;
 
-                if (isCreditsLoaded) {
+                if (isCreditsLoaded && isRecommendationsLoaded) {
                     movieDetailsImageView.setVisibility(View.VISIBLE);
                     movieDetailsStarImageView.setVisibility(View.VISIBLE);
                     movieDetailsPosterImageView.setVisibility(View.VISIBLE);
@@ -115,6 +123,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsTextView3.setVisibility(View.VISIBLE);
                     movieDetailsTextView5.setVisibility(View.VISIBLE);
                     movieDetailsTextView6.setVisibility(View.VISIBLE);
+                    movieDetailsTextView7.setVisibility(View.VISIBLE);
                     movieDetailsTitleTextView.setVisibility(View.VISIBLE);
                     movieDetailsTaglineTextView.setVisibility(View.VISIBLE);
                     movieDetailsReleaseDateTextView.setVisibility(View.VISIBLE);
@@ -125,6 +134,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsProductionCompaniesRecyclerView.setVisibility(View.VISIBLE);
                     movieDetailsCastsRecyclerView.setVisibility(View.VISIBLE);;
                     movieDetailsCrewRecyclerView.setVisibility(View.VISIBLE);
+                    movieDetailsRecommendationsRecyclerView.setVisibility(View.VISIBLE);
                     movieDetailsProgressBar.setVisibility(View.GONE);
                 }
             }
@@ -142,7 +152,7 @@ public class MovieDetailsFragment extends Fragment {
 
                 isCreditsLoaded = true;
 
-                if (isDetailsLoaded) {
+                if (isDetailsLoaded && isRecommendationsLoaded) {
                     movieDetailsImageView.setVisibility(View.VISIBLE);
                     movieDetailsStarImageView.setVisibility(View.VISIBLE);
                     movieDetailsPosterImageView.setVisibility(View.VISIBLE);
@@ -151,6 +161,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsTextView3.setVisibility(View.VISIBLE);
                     movieDetailsTextView5.setVisibility(View.VISIBLE);
                     movieDetailsTextView6.setVisibility(View.VISIBLE);
+                    movieDetailsTextView7.setVisibility(View.VISIBLE);
                     movieDetailsTitleTextView.setVisibility(View.VISIBLE);
                     movieDetailsTaglineTextView.setVisibility(View.VISIBLE);
                     movieDetailsReleaseDateTextView.setVisibility(View.VISIBLE);
@@ -161,6 +172,42 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsProductionCompaniesRecyclerView.setVisibility(View.VISIBLE);
                     movieDetailsCastsRecyclerView.setVisibility(View.VISIBLE);;
                     movieDetailsCrewRecyclerView.setVisibility(View.VISIBLE);
+                    movieDetailsRecommendationsRecyclerView.setVisibility(View.VISIBLE);
+                    movieDetailsProgressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        movieViewModel.getRecommendations(movieId);
+        movieViewModel.getRecommendationsResult().observe(getViewLifecycleOwner(), new Observer<List<Movie.Recommendations.Results>>() {
+            @Override
+            public void onChanged(List<Movie.Recommendations.Results> results) {
+                movieDetailsRecommendationsRecyclerView.setAdapter(new RecommendationsAdapter(getContext(), results));
+                movieDetailsRecommendationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+                isRecommendationsLoaded = true;
+
+                if (isDetailsLoaded && isCreditsLoaded) {
+                    movieDetailsImageView.setVisibility(View.VISIBLE);
+                    movieDetailsStarImageView.setVisibility(View.VISIBLE);
+                    movieDetailsPosterImageView.setVisibility(View.VISIBLE);
+                    movieDetailsTextView.setVisibility(View.VISIBLE);
+                    movieDetailsTextView2.setVisibility(View.VISIBLE);
+                    movieDetailsTextView3.setVisibility(View.VISIBLE);
+                    movieDetailsTextView5.setVisibility(View.VISIBLE);
+                    movieDetailsTextView6.setVisibility(View.VISIBLE);
+                    movieDetailsTextView7.setVisibility(View.VISIBLE);
+                    movieDetailsTitleTextView.setVisibility(View.VISIBLE);
+                    movieDetailsTaglineTextView.setVisibility(View.VISIBLE);
+                    movieDetailsReleaseDateTextView.setVisibility(View.VISIBLE);
+                    movieDetailsVoteAverageTextView.setVisibility(View.VISIBLE);
+                    movieDetailsOverviewTextView.setVisibility(View.VISIBLE);
+                    movieDetailsGenresTextView.setVisibility(View.VISIBLE);
+                    movieDetailsFullReleaseDateTextView.setVisibility(View.VISIBLE);
+                    movieDetailsProductionCompaniesRecyclerView.setVisibility(View.VISIBLE);
+                    movieDetailsCastsRecyclerView.setVisibility(View.VISIBLE);;
+                    movieDetailsCrewRecyclerView.setVisibility(View.VISIBLE);
+                    movieDetailsRecommendationsRecyclerView.setVisibility(View.VISIBLE);
                     movieDetailsProgressBar.setVisibility(View.GONE);
                 }
             }

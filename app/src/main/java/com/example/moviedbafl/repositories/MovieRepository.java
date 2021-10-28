@@ -108,4 +108,22 @@ public class MovieRepository {
 
         return result;
     }
+
+    public MutableLiveData<List<Movie.Recommendations.Results>> getRecommendations(int page) {
+        final MutableLiveData<List<Movie.Recommendations.Results>> result = new MutableLiveData<>();
+
+        ApiService.endpoint().getRecommendations(page, Const.API_KEY).enqueue(new Callback<Movie.Recommendations>() {
+            @Override
+            public void onResponse(Call<Movie.Recommendations> call, Response<Movie.Recommendations> response) {
+                result.setValue(response.body().getResults());
+            }
+
+            @Override
+            public void onFailure(Call<Movie.Recommendations> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        return result;
+    }
 }

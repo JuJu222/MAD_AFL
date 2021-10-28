@@ -57,4 +57,12 @@ public class MovieViewModel extends AndroidViewModel {
     public LiveData<Movie.Credits> getCreditsResult() {
         return credits;
     }
+
+    private MutableLiveData<List<Movie.Recommendations.Results>> recommendations = new MutableLiveData<>();
+    public void getRecommendations(int movieId) {
+        recommendations = repository.getRecommendations(movieId);
+    }
+    public LiveData<List<Movie.Recommendations.Results>> getRecommendationsResult() {
+        return recommendations;
+    }
 }

@@ -43,6 +43,7 @@ public class MovieDetailsFragment extends Fragment {
         TextView movieDetailsTextView2 = view.findViewById(R.id.movieDetailsTextView2);
         TextView movieDetailsTextView3 = view.findViewById(R.id.movieDetailsTextView3);
         TextView movieDetailsTextView5 = view.findViewById(R.id.movieDetailsTextView5);
+        TextView movieDetailsTextView6 = view.findViewById(R.id.movieDetailsTextView6);
         TextView movieDetailsTitleTextView = view.findViewById(R.id.movieDetailsTitleTextView);
         TextView movieDetailsTaglineTextView = view.findViewById(R.id.movieDetailsTaglineTextView);
         TextView movieDetailsReleaseDateTextView = view.findViewById(R.id.movieDetailsReleaseDateTextView);
@@ -59,6 +60,7 @@ public class MovieDetailsFragment extends Fragment {
         movieDetailsTextView2.setVisibility(View.GONE);
         movieDetailsTextView3.setVisibility(View.GONE);
         movieDetailsTextView5.setVisibility(View.GONE);
+        movieDetailsTextView6.setVisibility(View.GONE);
         movieDetailsStarImageView.setVisibility(View.GONE);
         movieDetailsPosterImageView.setVisibility(View.GONE);
         movieDetailsProgressBar.setVisibility(View.VISIBLE);
@@ -93,6 +95,7 @@ public class MovieDetailsFragment extends Fragment {
                 movieDetailsTextView2.setVisibility(View.VISIBLE);
                 movieDetailsTextView3.setVisibility(View.VISIBLE);
                 movieDetailsTextView5.setVisibility(View.VISIBLE);
+                movieDetailsTextView6.setVisibility(View.VISIBLE);
                 movieDetailsStarImageView.setVisibility(View.VISIBLE);
                 movieDetailsPosterImageView.setVisibility(View.VISIBLE);
                 movieDetailsProgressBar.setVisibility(View.GONE);

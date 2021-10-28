@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable-v24/custom_gradient_bottom.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable-v24/ic_baseline_star_24.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable/bottom_nav_icon_color_selector.xml" value="0.3776041666666667" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable/ic_calendar_week.xml" value="0.3776041666666667" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable/ic_camera_reels_fill.xml" value="0.3859375" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable/ic_chevron_left.xml" value="0.3776041666666667" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable/ic_film.xml" value="0.3776041666666667" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/drawable/ic_person_fill.xml" value="0.3776041666666667" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/layout/activity_main.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/layout/card_cast.xml" value="0.9" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/layout/card_now_playing.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/layout/card_production_company.xml" value="0.33" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/layout/fragment_movie_details.xml" value="0.43451652386780903" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/layout/fragment_now_playing.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/layout/fragment_upcoming.xml" value="0.2" />
+        <entry key="..\:/Users/japju/AndroidStudioProjects/MovieDbAFL/app/src/main/res/menu/menu_bottom.xml" value="0.3614583333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

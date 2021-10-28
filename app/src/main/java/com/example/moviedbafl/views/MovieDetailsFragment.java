@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.moviedbafl.R;
 import com.example.moviedbafl.adapters.CastsAdapter;
+import com.example.moviedbafl.adapters.CrewAdapter;
 import com.example.moviedbafl.adapters.ProductionCompaniesAdapter;
 import com.example.moviedbafl.helpers.Const;
 import com.example.moviedbafl.models.Movie;
@@ -51,6 +52,7 @@ public class MovieDetailsFragment extends Fragment {
         TextView movieDetailsFullReleaseDateTextView = view.findViewById(R.id.movieDetailsFullReleaseDateTextView);
         RecyclerView movieDetailsProductionCompaniesRecyclerView = view.findViewById(R.id.movieDetailsProductionCompaniesRecyclerView);
         RecyclerView movieDetailsCastsRecyclerView = view.findViewById(R.id.movieDetailsCastsRecyclerView);
+        RecyclerView movieDetailsCrewRecyclerView = view.findViewById(R.id.movieDetailsCrewRecyclerView);
         ProgressBar movieDetailsProgressBar = view.findViewById(R.id.movieDetailsProgressBar);
 
         movieDetailsTextView.setVisibility(View.GONE);
@@ -103,6 +105,9 @@ public class MovieDetailsFragment extends Fragment {
             public void onChanged(Movie.Credits credits) {
                 movieDetailsCastsRecyclerView.setAdapter(new CastsAdapter(getContext(), credits.getCast()));
                 movieDetailsCastsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+                movieDetailsCrewRecyclerView.setAdapter(new CrewAdapter(getContext(), credits.getCrew()));
+                movieDetailsCrewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
             }
         });
 

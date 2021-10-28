@@ -2,4 +2,13 @@
     <string name="app_name">MovieDbAFL</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="genres">Genres</string>
+    <string name="full_release_date">Full Release Date</string>
+    <string name="production_companies">Production Companies</string>
+    <string name="popularity">Popularity</string>
+    <string name="cast">Cast</string>
+    <string name="crew">Crew</string>
+    <string name="recommendations">Recommendations</string>
 </resources>

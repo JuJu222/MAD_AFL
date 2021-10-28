@@ -78,6 +78,7 @@ public class NowPlayingFragment extends Fragment {
                         @SuppressLint("NotifyDataSetChanged")
                         @Override
                         public void onChanged(List<Movie.NowPlayingUpcoming.Results> results) {
+                            System.out.println("loaded");
                             moviesAdapter.setNowPlayingUpcomingList(results);
                             moviesAdapter.notifyDataSetChanged();
 

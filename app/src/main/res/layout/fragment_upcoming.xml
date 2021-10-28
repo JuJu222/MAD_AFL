@@ -25,7 +25,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/raleway_bold"
-                android:text="Upcoming Movies"
+                android:text="@string/upcoming_movies"
                 android:textColor="@color/white"
                 android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"

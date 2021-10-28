@@ -54,6 +54,7 @@ public class MovieDetailsFragment extends Fragment {
         TextView movieDetailsTextView5 = view.findViewById(R.id.movieDetailsTextView5);
         TextView movieDetailsTextView6 = view.findViewById(R.id.movieDetailsTextView6);
         TextView movieDetailsTextView7 = view.findViewById(R.id.movieDetailsTextView7);
+        TextView movieDetailsTextView8 = view.findViewById(R.id.movieDetailsTextView8);
         TextView movieDetailsTitleTextView = view.findViewById(R.id.movieDetailsTitleTextView);
         TextView movieDetailsTaglineTextView = view.findViewById(R.id.movieDetailsTaglineTextView);
         TextView movieDetailsReleaseDateTextView = view.findViewById(R.id.movieDetailsReleaseDateTextView);
@@ -61,6 +62,7 @@ public class MovieDetailsFragment extends Fragment {
         TextView movieDetailsOverviewTextView = view.findViewById(R.id.movieDetailsOverviewTextView);
         TextView movieDetailsGenresTextView = view.findViewById(R.id.movieDetailsGenresTextView);
         TextView movieDetailsFullReleaseDateTextView = view.findViewById(R.id.movieDetailsFullReleaseDateTextView);
+        TextView movieDetailsPopularityTextView = view.findViewById(R.id.movieDetailsPopularityTextView);
         RecyclerView movieDetailsProductionCompaniesRecyclerView = view.findViewById(R.id.movieDetailsProductionCompaniesRecyclerView);
         RecyclerView movieDetailsCastsRecyclerView = view.findViewById(R.id.movieDetailsCastsRecyclerView);
         RecyclerView movieDetailsCrewRecyclerView = view.findViewById(R.id.movieDetailsCrewRecyclerView);
@@ -76,6 +78,7 @@ public class MovieDetailsFragment extends Fragment {
         movieDetailsTextView5.setVisibility(View.GONE);
         movieDetailsTextView6.setVisibility(View.GONE);
         movieDetailsTextView7.setVisibility(View.GONE);
+        movieDetailsTextView8.setVisibility(View.GONE);
         movieDetailsTitleTextView.setVisibility(View.GONE);
         movieDetailsTaglineTextView.setVisibility(View.GONE);
         movieDetailsReleaseDateTextView.setVisibility(View.GONE);
@@ -83,6 +86,7 @@ public class MovieDetailsFragment extends Fragment {
         movieDetailsOverviewTextView.setVisibility(View.GONE);
         movieDetailsGenresTextView.setVisibility(View.GONE);
         movieDetailsFullReleaseDateTextView.setVisibility(View.GONE);
+        movieDetailsPopularityTextView.setVisibility(View.GONE);
         movieDetailsProductionCompaniesRecyclerView.setVisibility(View.GONE);
         movieDetailsCastsRecyclerView.setVisibility(View.GONE);;
         movieDetailsCrewRecyclerView.setVisibility(View.GONE);
@@ -100,6 +104,7 @@ public class MovieDetailsFragment extends Fragment {
                 movieDetailsVoteAverageTextView.setText(vote);
                 movieDetailsOverviewTextView.setText(details.getOverview());
                 movieDetailsFullReleaseDateTextView.setText(details.getRelease_date());
+                movieDetailsPopularityTextView.setText(String.valueOf(details.getPopularity()));
                 Glide.with(getContext()).load(Const.IMG_URL + details.getBackdrop_path()).into(movieDetailsImageView);
                 Glide.with(getContext()).load(Const.IMG_URL + details.getPoster_path()).into(movieDetailsPosterImageView);
                 StringBuilder genreToSet = new StringBuilder();
@@ -127,6 +132,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsTextView5.setVisibility(View.VISIBLE);
                     movieDetailsTextView6.setVisibility(View.VISIBLE);
                     movieDetailsTextView7.setVisibility(View.VISIBLE);
+                    movieDetailsTextView8.setVisibility(View.VISIBLE);
                     movieDetailsTitleTextView.setVisibility(View.VISIBLE);
                     movieDetailsTaglineTextView.setVisibility(View.VISIBLE);
                     movieDetailsReleaseDateTextView.setVisibility(View.VISIBLE);
@@ -134,6 +140,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsOverviewTextView.setVisibility(View.VISIBLE);
                     movieDetailsGenresTextView.setVisibility(View.VISIBLE);
                     movieDetailsFullReleaseDateTextView.setVisibility(View.VISIBLE);
+                    movieDetailsPopularityTextView.setVisibility(View.VISIBLE);
                     movieDetailsProductionCompaniesRecyclerView.setVisibility(View.VISIBLE);
                     movieDetailsCastsRecyclerView.setVisibility(View.VISIBLE);;
                     movieDetailsCrewRecyclerView.setVisibility(View.VISIBLE);
@@ -165,6 +172,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsTextView5.setVisibility(View.VISIBLE);
                     movieDetailsTextView6.setVisibility(View.VISIBLE);
                     movieDetailsTextView7.setVisibility(View.VISIBLE);
+                    movieDetailsTextView8.setVisibility(View.VISIBLE);
                     movieDetailsTitleTextView.setVisibility(View.VISIBLE);
                     movieDetailsTaglineTextView.setVisibility(View.VISIBLE);
                     movieDetailsReleaseDateTextView.setVisibility(View.VISIBLE);
@@ -172,6 +180,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsOverviewTextView.setVisibility(View.VISIBLE);
                     movieDetailsGenresTextView.setVisibility(View.VISIBLE);
                     movieDetailsFullReleaseDateTextView.setVisibility(View.VISIBLE);
+                    movieDetailsPopularityTextView.setVisibility(View.VISIBLE);
                     movieDetailsProductionCompaniesRecyclerView.setVisibility(View.VISIBLE);
                     movieDetailsCastsRecyclerView.setVisibility(View.VISIBLE);;
                     movieDetailsCrewRecyclerView.setVisibility(View.VISIBLE);
@@ -185,6 +194,10 @@ public class MovieDetailsFragment extends Fragment {
         movieViewModel.getRecommendationsResult().observe(getViewLifecycleOwner(), new Observer<List<Movie.Recommendations.Results>>() {
             @Override
             public void onChanged(List<Movie.Recommendations.Results> results) {
+                if (results.size() == 0) {
+                    movieDetailsTextView7.setText("");
+                }
+
                 movieDetailsRecommendationsRecyclerView.setAdapter(new RecommendationsAdapter(getContext(), results));
                 movieDetailsRecommendationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
@@ -200,6 +213,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsTextView5.setVisibility(View.VISIBLE);
                     movieDetailsTextView6.setVisibility(View.VISIBLE);
                     movieDetailsTextView7.setVisibility(View.VISIBLE);
+                    movieDetailsTextView8.setVisibility(View.VISIBLE);
                     movieDetailsTitleTextView.setVisibility(View.VISIBLE);
                     movieDetailsTaglineTextView.setVisibility(View.VISIBLE);
                     movieDetailsReleaseDateTextView.setVisibility(View.VISIBLE);
@@ -207,6 +221,7 @@ public class MovieDetailsFragment extends Fragment {
                     movieDetailsOverviewTextView.setVisibility(View.VISIBLE);
                     movieDetailsGenresTextView.setVisibility(View.VISIBLE);
                     movieDetailsFullReleaseDateTextView.setVisibility(View.VISIBLE);
+                    movieDetailsPopularityTextView.setVisibility(View.VISIBLE);
                     movieDetailsProductionCompaniesRecyclerView.setVisibility(View.VISIBLE);
                     movieDetailsCastsRecyclerView.setVisibility(View.VISIBLE);;
                     movieDetailsCrewRecyclerView.setVisibility(View.VISIBLE);

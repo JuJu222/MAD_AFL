@@ -1,7 +1,9 @@
 package com.example.moviedbafl.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,12 @@ public class RecommendationsAdapter extends RecyclerView.Adapter<Recommendations
         Glide.with(context).load(Const.IMG_URL + result.getPoster_path()).into(holder.cardNowPlayingImageView);
         Glide.with(context).load(Const.IMG_URL + result.getBackdrop_path()).into(holder.cardNowPlayingBackgroundImageView);
 
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) holder.nowPlayingCardView.getLayoutParams();
+        Resources r = context.getResources();
+        params.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, r.getDisplayMetrics());
+        params.bottomMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, r.getDisplayMetrics());
+        params.leftMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, r.getDisplayMetrics());
+        params.rightMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, r.getDisplayMetrics());
         holder.nowPlayingCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

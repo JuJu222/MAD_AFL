@@ -30,14 +30,17 @@ import com.example.moviedbafl.viewmodels.MovieViewModel;
 import java.util.List;
 
 public class MovieDetailsFragment extends Fragment {
-    boolean isDetailsLoaded = false;
-    boolean isCreditsLoaded = false;
-    boolean isRecommendationsLoaded = false;
+    boolean isDetailsLoaded;
+    boolean isCreditsLoaded;
+    boolean isRecommendationsLoaded;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_details, container, false);
 
+        isDetailsLoaded = false;
+        isCreditsLoaded = false;
+        isRecommendationsLoaded = false;
         int movieId = getArguments().getInt("movieId");
 
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);

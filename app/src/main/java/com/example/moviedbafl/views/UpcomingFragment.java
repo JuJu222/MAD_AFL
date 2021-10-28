@@ -28,12 +28,15 @@ import java.util.List;
 public class UpcomingFragment extends Fragment {
     MoviesAdapter moviesAdapter;
     GridLayoutManager gridLayoutManager;
-    boolean loading = false;
-    int page = 1;
+    boolean loading;
+    int page;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_upcoming, container, false);
+
+        loading = false;
+        page = 1;
 
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 

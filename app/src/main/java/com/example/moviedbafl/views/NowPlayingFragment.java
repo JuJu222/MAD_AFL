@@ -74,7 +74,7 @@ public class NowPlayingFragment extends Fragment {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putInt("movieId", results.get(position).getId());
+                        bundle.putInt("movieId", results.get(position -1).getId());
                         Navigation.findNavController(v).navigate(R.id.action_nowPlayingFragment_to_movieDetailsFragment, bundle);
                     }
                 });

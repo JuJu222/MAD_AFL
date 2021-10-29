@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.moviedbafl.R;
 import com.example.moviedbafl.adapters.MoviesAdapter;
@@ -29,6 +30,7 @@ public class NowPlayingFragment extends Fragment {
     GridLayoutManager gridLayoutManager;
     boolean loading;
     int page;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,16 +42,32 @@ public class NowPlayingFragment extends Fragment {
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
         RecyclerView nowPlayingRecyclerView = view.findViewById(R.id.nowPlayingRecyclerView);
-        NestedScrollView nowPlayingNestedScrollView = view.findViewById(R.id.nowPlayingNestedScrollView);
+        ProgressBar nowPlayingProgressBar = view.findViewById(R.id.nowPlayingProgressBar);
+
+        nowPlayingProgressBar.setVisibility(View.VISIBLE);
 
         movieViewModel.clearNowPlayingList();
         movieViewModel.getNowPlaying(page);
         movieViewModel.getNowPlayingResult().observe(getViewLifecycleOwner(), new Observer<List<Movie.NowPlayingUpcoming.Results>>() {
             @Override
             public void onChanged(List<Movie.NowPlayingUpcoming.Results> results) {
-                moviesAdapter = new MoviesAdapter(getContext(), results);
+                moviesAdapter = new MoviesAdapter(getContext(), results, getResources().getString(R.string.now_playing));
                 nowPlayingRecyclerView.setAdapter(moviesAdapter);
                 gridLayoutManager = new GridLayoutManager(getContext(), 2);
+                gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                    @Override
+                    public int getSpanSize(int position) {
+                        switch(moviesAdapter.getItemViewType(position)){
+                            case MoviesAdapter.TYPE_HEADER:
+                            case MoviesAdapter.TYPE_FOOTER:
+                                return 2;
+                            case MoviesAdapter.TYPE_ITEM:
+                                return 1;
+                            default:
+                                return -1;
+                        }
+                    }
+                });
                 nowPlayingRecyclerView.setLayoutManager(gridLayoutManager);
 
                 ItemClickSupport.addTo(nowPlayingRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
@@ -60,17 +78,20 @@ public class NowPlayingFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.action_nowPlayingFragment_to_movieDetailsFragment, bundle);
                     }
                 });
+
+                nowPlayingProgressBar.setVisibility(View.GONE);
             }
         });
 
-        nowPlayingNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+        nowPlayingRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                double scrollViewHeight = nowPlayingNestedScrollView.getChildAt(0).getBottom() - nowPlayingNestedScrollView.getHeight();
-                double getScrollY = nowPlayingNestedScrollView.getScrollY();
-                double scrollPosition = (getScrollY / scrollViewHeight);
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                visibleItemCount = gridLayoutManager.getChildCount();
+                totalItemCount = gridLayoutManager.getItemCount();
+                pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
 
-                if (scrollPosition == 1 && !loading) {
+                if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && !loading) {
+                    moviesAdapter.setIsLoading(true);
                     loading = true;
                     page++;
                     movieViewModel.getNowPlaying(page);
@@ -82,6 +103,7 @@ public class NowPlayingFragment extends Fragment {
                             moviesAdapter.setNowPlayingUpcomingList(results);
                             moviesAdapter.notifyDataSetChanged();
 
+                            moviesAdapter.setIsLoading(false);
                             loading = false;
                         }
                     });

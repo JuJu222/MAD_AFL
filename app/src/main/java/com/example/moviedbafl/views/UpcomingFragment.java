@@ -90,9 +90,9 @@ public class UpcomingFragment extends Fragment {
                 visibleItemCount = gridLayoutManager.getChildCount();
                 totalItemCount = gridLayoutManager.getItemCount();
                 pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
+                moviesAdapter.setIsLoading(true);
 
                 if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && !loading) {
-                    moviesAdapter.setIsLoading(true);
                     loading = true;
                     page++;
                     movieViewModel.getUpcoming(page);
@@ -104,7 +104,6 @@ public class UpcomingFragment extends Fragment {
                             moviesAdapter.setNowPlayingUpcomingList(results);
                             moviesAdapter.notifyDataSetChanged();
 
-                            moviesAdapter.setIsLoading(false);
                             loading = false;
                         }
                     });
